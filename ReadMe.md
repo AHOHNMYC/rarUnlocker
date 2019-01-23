@@ -12,7 +12,7 @@ The only one exclusion is RAR5 with ecnrypted headers (option "Encrypt file name
 
 ### Compiling
 
-[Windows build](/AHOHNMYC/rarUnlocker/releases)
+[Windows build](http://github.com/AHOHNMYC/rarUnlocker/releases)
 
 `gcc rarUnlocker.c`, yep it's very primitive.
 
