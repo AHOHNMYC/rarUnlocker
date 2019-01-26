@@ -22,6 +22,8 @@ The only one exclusion is RAR5 with ecnrypted headers (option "Encrypt file name
 
 `rarUnlocker -l file.rar` - sets lock flag
 
+<p align="center"> <img src="http://lurkmore.so/images/8/89/A_winrar_is_you.png" alt="WinRAR"> </p>
+
 ### Usefull linkus
 
 * File format technotes: [RAR5](https://www.rarlab.com/technote.htm), [earlier](https://loc.gov/preservation/digital/formats/fdd/fdd000450.shtml#specs)
@@ -29,5 +31,3 @@ The only one exclusion is RAR5 with ecnrypted headers (option "Encrypt file name
 * [WinRAR site](https://rarlab.com)
 
 * [WinRAR thread](https://forum.ru-board.com/topic.cgi?forum=5&topic=49002), Eugene Roshal answers here
-
-![WinRAR](http://lurkmore.so/images/8/89/A_winrar_is_you.png)
