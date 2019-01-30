@@ -23,7 +23,6 @@ uint32_t crc32(const void* data, size_t n_bytes);
 // Returns vintLen, count of bytes ocupied by this vint
 int vint(uint8_t* buf, uint32_t* vintOut);
 
-#define NotRAR 0
 #define RAR4   4
 #define RAR5   5
 
@@ -69,7 +68,7 @@ int main(int argc, char** argv) {
 	
 	FILE* file = fopen(argv[fileArg], "r+b");
 	if (file == NULL) {
-		perror("File open error");  // We have 3 same string.. Why not compress they with template? GCC is smart enough to write in file only one
+		perror("Error opening file");
 		return 1;
 	}
 	
@@ -77,17 +76,17 @@ int main(int argc, char** argv) {
 	
 	unsigned int readBytes = fread(buf, sizeof(*buf), BUFFER_SIZE, file);
 	if (readBytes == 0) {
-		perror("File read error");
+		perror("Error reading file");
 		return 1;
 	}
 
-	unsigned int type = NotRAR;
+	unsigned int type;
 	
 	if (memcmp(buf, rar5sig, sizeof(rar5sig)) == 0) {
 		type = RAR5;
 	} else if (memcmp(buf, rar4sig, sizeof(rar4sig)) == 0) {
 		type = RAR4;
-	} else if (type == NotRAR) {
+	} else {
 		fprintf(stderr, "This is not RAR file!\n");
 		return 1;
 	}
@@ -112,7 +111,7 @@ int main(int argc, char** argv) {
 		unsigned int headerFlagLen = vint(pData+headerSizeLen+headerTypeLen, &headerFlag);
 
 		if (headerType == ENCRYPTED_HEADER_TYPE5) {
-			fprintf(stderr, "RAR5 with encrypted headers are not supported!\n");
+			fprintf(stderr, "RAR5 files with encrypted headers are not supported!\n");
 			return 1;
 		}
 
@@ -148,14 +147,14 @@ int main(int argc, char** argv) {
 		isHeaderCrcValid = *(uint16_t*)pCrc == (uint16_t)oldCrc;
 
 	if (!isHeaderCrcValid) {
-		fprintf(stderr, "File corrupted or unsupported!\n");
+		fprintf(stderr, "File is corrupted or not supported!\n");
 		return 1;
 	}
 
 	bool lockedFlag = (*pFlag&lockFlagMask) != 0;
 
 	if (lockedFlag == doLock) {
-		printf("Archive %s %slocked ;3\n", "is", doLock ? "already " : "not ");
+		printf("Archive is %s locked :3\n", doLock ? "already" : "not");
 		return 0;
 	}
 
@@ -176,11 +175,11 @@ int main(int argc, char** argv) {
 
 	fseek(file, writeByteStart, SEEK_SET);
 	if (writeByteCount != fwrite(pCrc, sizeof(uint8_t), writeByteCount, file)) {
-		perror("File write error");
+		perror("Error writing file");
 		return 1;
 	}
 	
-	printf("Archive %s %slocked ;3\n", "had been", doLock ? "" : "un");
+	printf("Archive had been %slocked ;3\n", doLock ? "" : "un");
 	return 0;
 }
 
@@ -200,7 +199,7 @@ int vint(uint8_t* buf, uint32_t* vintOut) {
 
 // http://home.thep.lu.se/~bjorn/crc/crc32_simple.c
 // Bjorn Samuelsson, public domain
-// Some modifications are done to minimize fottprint
+// Some modifications are done to minimize footprint
 inline uint32_t crc32_for_byte(uint32_t r) {
 	for(int j = 0; j < 8; ++j)
 		r = (r & 1? 0: (uint32_t)0xEDB88320Lu) ^ r >> 1;
