@@ -22,7 +22,7 @@ The only one exclusion is RAR5 with ecnrypted headers (option "Encrypt file name
 
 `rarUnlocker -l file.rar` - sets lock flag
 
-<p align="center"> <img src="http://lurkmore.so/images/8/89/A_winrar_is_you.png" alt="WinRAR"> </p>
+<p align="center"> <img src="http://web.archive.org/web/20220219061510im_/http://lurkmore.so/images/8/89/A_winrar_is_you.png" alt="WinRAR"> </p>
 
 ### Usefull linkus
 
