@@ -30,4 +30,4 @@ The only one exclusion is RAR5 with ecnrypted headers (option "Encrypt file name
 
 * [WinRAR site](https://rarlab.com)
 
-* [WinRAR thread](https://forum.ru-board.com/topic.cgi?forum=5&topic=49002), Eugene Roshal answers here
+* [WinRAR thread](https://forum.ru-board.com/topic.cgi?forum=5&topic=50602), Eugene Roshal answers here
